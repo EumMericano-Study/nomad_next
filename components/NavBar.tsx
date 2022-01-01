@@ -7,17 +7,23 @@ export default function NavBar() {
     return (
         <nav className={styles.nav}>
             <Link href="/">
-                <a style={{ color: router.pathname === "/" ? "red" : "black" }}>
+                <a
+                    className={
+                        (styles.link,
+                        router.pathname === "/" ? styles.selected : "")
+                    }
+                >
                     Home
                 </a>
             </Link>
             <Link href="/hello">
                 <a
-                    style={{
-                        color: router.pathname === "/hello" ? "red" : "black",
-                    }}
+                    className={
+                        (styles.link,
+                        router.pathname === "/hello" ? styles.selected : "")
+                    }
                 >
-                    Hello{" "}
+                    Hello
                 </a>
             </Link>
         </nav>
