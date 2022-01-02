@@ -7,6 +7,13 @@ export default function App({ Component, pageProps }: AppProps) {
             <NavBar />
             <Component {...pageProps} />
             <span>footer</span>
+            <style jsx global>
+                {`
+                    a {
+                        color: brown;
+                    }
+                `}
+            </style>
         </>
     );
 }
