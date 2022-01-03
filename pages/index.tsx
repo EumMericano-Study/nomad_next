@@ -4,8 +4,16 @@ import Seo from "../components/Seo";
 
 export default function Home({ results }: { results: MovieIState[] }) {
     const router = useRouter();
-    const onClick = (id: number) => {
-        router.push(`/movies/${id}`);
+    const onClick = (id: number, title: string) => {
+        router.push(
+            {
+                pathname: `/movies/${id}`,
+                query: {
+                    title,
+                },
+            },
+            `/movies/${id}`
+        );
     };
     return (
         <div className="container">
@@ -13,7 +21,7 @@ export default function Home({ results }: { results: MovieIState[] }) {
             {results?.map((movie: MovieIState) => (
                 <div
                     onClick={() => {
-                        onClick(movie.id);
+                        onClick(movie.id, movie.original_title);
                     }}
                     className="movie"
                     key={movie.id}
@@ -22,7 +30,15 @@ export default function Home({ results }: { results: MovieIState[] }) {
                         src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                     />
                     <h4>
-                        <Link href={`/movies/${movie.id}`}>
+                        <Link
+                            href={{
+                                pathname: `/movies/${movie.id}`,
+                                query: {
+                                    title: movie.original_title,
+                                },
+                            }}
+                            as={`/movies/${movie.id}`}
+                        >
                             <a>{movie.original_title}</a>
                         </Link>
                     </h4>
